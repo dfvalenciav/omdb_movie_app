@@ -143,4 +143,22 @@ Push your committed changes to your branch:
 
 ## **License**
 
+## FINAL RESULT 
+
+# Hardcoded sign in
+![Screenshot 2025-02-02 at 11 54 26 AM](https://github.com/user-attachments/assets/036d489f-0705-4a49-a4cf-b611248cdba5)
+
+# Search and favorites
+![Screenshot 2025-02-02 at 11 55 30 AM](https://github.com/user-attachments/assets/330a4883-e84e-4c05-87bf-811db04a415b)
+![Screenshot 2025-02-02 at 11 55 46 AM](https://github.com/user-attachments/assets/69f7c9a3-2f00-4b47-b5c8-652c62553cbd)
+![Screenshot 2025-02-02 at 11 56 13 AM](https://github.com/user-attachments/assets/03899972-ee78-4c7d-9435-8c706f75dad1)
+
+# Database
+Due to the nature of the project and kind of data needed to be stored. I choose a sqlite local database, with this solution the data can be save and retrieve faster and consistency
+
+# Total amount of hours spent : 4 h
+
+
+
+
     This project is licensed under the MIT License.
