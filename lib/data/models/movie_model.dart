@@ -3,14 +3,14 @@ import '../../domain/entities/movie.dart';
 /// Model representing a movie fetched from the OMDb API.
 /// Extends the core Movie entity and includes JSON parsing methods.
 class MovieModel extends Movie {
-  MovieModel({
-    required String title,
-    required String year,
-    required String imdbID,
-    required String poster,
-  }) : super(title: title, year: year, imdbID: imdbID, poster: poster);
+  const MovieModel({
+    required super.title,
+    required super.year,
+    required super.imdbID,
+    required super.poster,
+    super.isFavorite,
+  });
 
-  /// Factory method to create a MovieModel from a JSON map.
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
       title: json['Title'],
@@ -18,5 +18,15 @@ class MovieModel extends Movie {
       imdbID: json['imdbID'],
       poster: json['Poster'],
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': imdbID,
+      'title': title,
+      'year': year,
+      'poster': poster,
+      'isFavorite': isFavorite ? 1 : 0,
+    };
   }
 }

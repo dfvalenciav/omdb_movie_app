@@ -39,3 +39,27 @@ class GetMovieDetailsEvent extends MovieEvent {
   @override
   List<Object?> get props => [movieId];
 }
+
+// Event to handle adding/removing a movie from favorites.
+class AddRemoveFavoriteEvent extends MovieEvent {
+  final String movieId;
+  final bool isFavorite;
+
+  AddRemoveFavoriteEvent(this.movieId, this.isFavorite);
+
+  @override
+  List<Object?> get props => [movieId, isFavorite];
+}
+
+// Event to handle load a movie in favorites.
+class LoadFavoritesEvent extends MovieEvent {}
+
+// Event to handle remove a movie in favorites.
+class RemoveFavoriteEvent extends MovieEvent {
+  final String movieId;
+
+  RemoveFavoriteEvent(this.movieId);
+
+    @override
+  List<Object?> get props => [movieId];
+}

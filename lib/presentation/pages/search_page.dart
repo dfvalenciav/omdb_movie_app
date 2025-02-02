@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../bloc/movie_bloc.dart';
 import '../bloc/movie_event.dart';
 import '../bloc/movie_state.dart';
 import 'details_page.dart';
 
-/// Page for searching movies.
-/// Allows the user to input a query and displays a list of movies.
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Clear the text field when the page is loaded
+    _searchController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Movies'),
+        title: const Text('Search Movies'),
       ),
       body: Column(
         children: [
-          /// Input field for movie search query.
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
                 labelText: 'Search for a movie',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                   onPressed: () {
                     context
                         .read<MovieBloc>()
@@ -41,13 +52,11 @@ class SearchPage extends StatelessWidget {
               },
             ),
           ),
-
-          /// Displays a list of movies or error/loading messages.
           Expanded(
             child: BlocBuilder<MovieBloc, MovieState>(
               builder: (context, state) {
                 if (state is MovieLoading) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (state is MoviesLoaded) {
                   return ListView.builder(
                     itemCount: state.movies.length,
@@ -60,7 +69,7 @@ class SearchPage extends StatelessWidget {
                           height: 50,
                           fit: BoxFit.cover,
                           errorBuilder: (_, __, ___) =>
-                              Icon(Icons.broken_image),
+                              const Icon(Icons.broken_image),
                         ),
                         title: Text(movie.title),
                         subtitle: Text(movie.year),
@@ -70,7 +79,8 @@ class SearchPage extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => BlocProvider.value(
                                 value: context.read<MovieBloc>(),
-                                child: DetailsPage(movieId: movie.imdbID),
+                                child: DetailsPage(
+                                    movieId: movie.imdbID, poster: movie.poster),
                               ),
                             ),
                           );
@@ -82,11 +92,11 @@ class SearchPage extends StatelessWidget {
                   return Center(
                     child: Text(
                       state.message,
-                      style: TextStyle(color: Colors.red, fontSize: 16),
+                      style: const TextStyle(color: Colors.red, fontSize: 16),
                     ),
                   );
                 } else {
-                  return Center(
+                  return const Center(
                       child: Text('Search for movies to display here.'));
                 }
               },

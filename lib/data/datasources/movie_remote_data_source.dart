@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import '../../core/error/exceptions.dart';
 import '../models/movie_details_model.dart';
 import '../models/movie_model.dart';
@@ -31,9 +29,15 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return (data['Search'] as List)
-          .map((json) => MovieModel.fromJson(json))
-          .toList();
+
+      // Check if 'Search' exists and is a List
+      if (data['Search'] != null && data['Search'] is List) {
+        return (data['Search'] as List)
+            .map((json) => MovieModel.fromJson(json))
+            .toList();
+      } else {
+        throw ServerException(); 
+      }
     } else {
       throw ServerException();
     }

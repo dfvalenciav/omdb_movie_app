@@ -10,8 +10,9 @@ class MovieDetails extends Equatable {
   final String plot;
   final String runtime;
   final String genre;
+  final String poster;  
 
-  MovieDetails({
+  const MovieDetails({
     required this.title,
     required this.year,
     required this.director,
@@ -19,9 +20,10 @@ class MovieDetails extends Equatable {
     required this.plot,
     required this.runtime,
     required this.genre,
+    required this.poster,
   });
 
   @override
   List<Object?> get props =>
-      [title, year, director, actors, plot, runtime, genre];
+      [title, year, director, actors, plot, runtime, genre, poster]; 
 }

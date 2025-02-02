@@ -7,14 +7,17 @@ class Movie extends Equatable {
   final String year;
   final String imdbID;
   final String poster;
+  final bool isFavorite;
 
-  Movie({
+  // Set isFavorite to false by default
+  const Movie({
     required this.title,
     required this.year,
     required this.imdbID,
     required this.poster,
+    this.isFavorite = false, // Default value is false
   });
 
   @override
-  List<Object?> get props => [title, year, imdbID, poster];
+  List<Object?> get props => [title, year, imdbID, poster, isFavorite];
 }

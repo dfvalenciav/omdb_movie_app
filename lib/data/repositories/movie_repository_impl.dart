@@ -46,6 +46,7 @@ class MovieRepositoryImpl implements MovieRepository {
         plot: detailsModel.plot,
         runtime: detailsModel.runtime,
         genre: detailsModel.genre,
+        poster: detailsModel.poster,
       );
       return Right(details);
     } on ServerException {

@@ -23,11 +23,7 @@ void main() {
 
   group('searchMovies', () {
     final tMovieModels = [
-      MovieModel(
-          title: 'Inception', year: '2010', imdbID: 'tt1375666', poster: 'N/A'),
-    ];
-    final tMovies = [
-      Movie(
+      const MovieModel(
           title: 'Inception', year: '2010', imdbID: 'tt1375666', poster: 'N/A'),
     ];
 
@@ -39,7 +35,7 @@ void main() {
           .thenAnswer((_) async => tMovieModels);
 
       final expectedMovies = [
-        Movie(
+        const Movie(
             title: 'Inception',
             year: '2010',
             imdbID: 'tt1375666',
